@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import AppCars from "./pages/AppCars";
+import AddCar from "./pages/AddCar";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <nav>
+          <h2 className="logo">OldTimer</h2>
+          <ul className="navbar">
+            <li>
+              <Link to="/" className="nav-link">
+                HOME
+              </Link>
+            </li>
+            <li>
+              <Link className="nav-link" to="/cars">
+                Cars
+              </Link>
+            </li>
+            <li>
+              <Link className="nav-link" to="/add">
+                Add
+              </Link>
+            </li>
+          </ul>
+        </nav>
+        <Switch>
+          <Route exact path="/cars">
+            <AppCars />
+          </Route>
+          <Route path="/add">
+            <AddCar />
+          </Route>
+          <Route path="/edit/:id">
+            <AddCar />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
